@@ -14,7 +14,7 @@ const Dashboard = () => {
       <div className="flex flex-row   rounded-2xl">
         <div className=" w-full rounded-2xl  ">
           <div className="h-50 w-full flex md:flex-row flex-col gap-6">
-            <div className="bg-white w-1/2 h-50 rounded-2xl border-2 border-green-600 ">
+            <div className="bg-white w-1/2 h-50 rounded-2xl border-2 border-green-200 ">
               <div className="flex flex-row justify-between mt-4 mx-4">
                 <h1 className="font-semibold ">Total Users</h1>
                 <People className="text-blue-600" />
