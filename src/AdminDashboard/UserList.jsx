@@ -58,8 +58,7 @@ const UserList = () => {
     data.name.toLowerCase().includes(searchUser.toLowerCase()) ||
     data.email.toLowerCase().includes(searchUser.toLowerCase()) ||
     data.role.toLowerCase().includes(searchUser.toLowerCase()) ||
-    data.phoneNumber.toString().includes(searchUser)||
-    data.nicNo.toString().includes(searchUser)
+    data.phoneNumber.toString().includes(searchUser)
    ) {
     return data;
   }
