@@ -1,5 +1,5 @@
 const devURL = "http://localhost:4000";
-const prodURL = "https://carpool-backend-staging.up.railway.app/";
+const prodURL = "https://carpool-backend-staging.up.railway.app";
 
 export const BASE_URL = prodURL;
  
