@@ -10,7 +10,7 @@ const Dashboard = () => {
   const { AllDrivers } = useContext(AuthContext);
   
   return (
-    <div className="min-h-screen">
+    <div className="h-screen">
       <div className="flex flex-row   rounded-2xl">
         <div className=" w-full rounded-2xl  ">
           <div className="h-50 w-full flex md:flex-row flex-col gap-6">

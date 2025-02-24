@@ -4,13 +4,29 @@ import { AuthContext } from "../../context/AuthContext";
 import Popup from "reactjs-popup";
 import { MdDeleteForever } from "react-icons/md";
 import { CiEdit, CiMenuKebab } from "react-icons/ci";
+import axios from "axios";
+import { AppRoutes } from "../../constant/Constant";
 
 const DriverList = () => {
   const navigate = useNavigate()
   const { AllDrivers } = useContext(AuthContext)
   const [searchDriver, setSearchDriver] = useState("")
+
+// delete driver 
+const deleteDriver = async (userId) => {
+  try {
+    const res = await axios.delete(`${AppRoutes.deleteUser}/${userId}`)
+    console.log("res", res);
+    window.location.reload();
+
+  } catch (error) {
+    console.log("error", error.message);
+  }
+
+};
+
   return (
-    <div className=" min-h-screen p-3  bg-white border-2 border-green-600 rounded-2xl justify-between">
+    <div className="h-screen overflow-y-scroll  p-3  bg-white border-2 border-green-600 rounded-2xl justify-between">
 
       <div className=" text-2xl  flex flex-row text-slate-900 justify-between">
         <div className="font-semibold">Driver List</div>
@@ -92,7 +108,38 @@ const DriverList = () => {
                   <td className="px-6 py-4">
                     <ul className="flex space-x-2 text-xl">
                       {/* deletetBtn */}
-                      <li className="text-red-600 cursor-pointer"><MdDeleteForever /></li>
+                      <li className="text-red-600 cursor-pointer">
+                        <Popup className="text-center"
+                          trigger={
+                            <MdDeleteForever />
+                          }
+                          modal
+                          overlayStyle={{ background: "rgba(0, 0, 0, 0.5)" }}
+                        >
+                          {(close) => (
+                            <div className="bg-white p-4 rounded-lg shadow-lg w-[400px] mx-auto text-center">
+                              {/* Header */}
+                              <div className="text-2xl font-semibold text-red-900 flex justify-end">
+                                <button onClick={close} className="text-red-500 text-xl cursor-pointer">
+                                  ✖
+                                </button>
+                              </div>
+                              <div className="flex flex-col">
+                                <div className="">
+                                  <h1>Are you want to delete ?</h1>
+                                  <div className="flex justify-center mt-8">
+                                    <button
+                                      onClick={() => deleteDriver(driverData._id)}
+                                    className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-bold py-2 px-4 rounded-md">
+                                      Delete
+                                    </button>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </Popup></li>
                       {/* EditBtn */}
                       <li className="text-black cursor-pointer">
                         <Popup className="text-center"
@@ -128,8 +175,8 @@ const DriverList = () => {
                                   </div>
                                 </div>
                                 <div className="flex flex-row justify-between mt-4">
-                                  <div className="flex flex-col w-1/2">
-                                    <label className="text-sm">Role</label>
+                                  <div className="flex flex-col w-1/2 ml-4">
+                                    <label className="text-sm">CNIC</label>
                                     <input
                                       type="text"
                                       className="border-2 border-gray-300 p-2 rounded-lg"
@@ -143,13 +190,25 @@ const DriverList = () => {
                                     />
                                   </div>
                                 </div>
-                                <div className="flex flex-col mt-4">
-                                  <label className="text-sm">CNIC</label>
-                                  <input
-                                    type="text"
-                                    className="border-2 border-gray-300 p-2 rounded-lg"
-                                  />
+                                <div className="flex flex-row justify-between mt-4">
+                                  <div className="flex flex-col w-1/2 ml-4 cursor-pointer">
+                                    <label className="text-sm ">Gender</label>
+                                    <select className="border-2 border-gray-300 p-2 rounded-lg">
+                                      <option disabled >Select Gender</option>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                    </select>
+                                  </div>
+                                  <div className="flex flex-col w-1/2 ml-4 cursor-pointer">
+                                    <label className="text-sm">Vehicle</label>
+                                    <select className="border-2 border-gray-300 p-2 rounded-lg">
+                                      <option disabled>Select Car</option>
+                                      <option value="Male">Car</option>
+                                      <option value="Female" cl>Bike</option>
+                                    </select>
+                                  </div>
                                 </div>
+
                                 <div className="flex justify-center mt-4">
                                   <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
                                     Update

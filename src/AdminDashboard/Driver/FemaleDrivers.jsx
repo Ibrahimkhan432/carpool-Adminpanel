@@ -6,7 +6,7 @@ const FemaleDrivers = () => {
     const { AllFemaleDrivers } = useContext(AuthContext);
     console.log(AllFemaleDrivers);
     return (
-        <div className=" min-h-screen p-3 rounded-2xl bg-white border-2 border-green-600">
+        <div className=" h-screen p-3 rounded-2xl bg-white border-2 border-green-600">
            <div className="font-semibold text-2xl  flex flex-row text-slate-900 justify-between">
         <div>Female Drivers</div>
         <div className="mb-4 text space-x-4">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Dashboard from "./AdminDashboard/Dashboard";
 import UserList from "./AdminDashboard/UserList";
 import ActiveDriver from "./AdminDashboard/ActiveDriver";
@@ -8,14 +8,17 @@ import App from './App.jsx';
 import MaleDrivers from './AdminDashboard/Driver/MaleDrivers.jsx';
 import SideBar from './AdminDashboard/SideBar.jsx';
 import FemaleDrivers from './AdminDashboard/Driver/FemaleDrivers.jsx';
+import { AuthContext } from './context/AuthContext.jsx';
+import Login from './AdminDashboard/Login.jsx';
 
 const Router = () => {
+  const {currentUser}=useContext(AuthContext)
   return (
         <>
       <Routes>
         <Route index element={<App/>} />
         <Route element={<SideBar/>}>
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard/>  }/>
         <Route path="/userlist" element={<UserList />} />
         <Route path="/driver" element={<ActiveDriver />} />
         <Route path="/driverlist" element={<DriverList />} />

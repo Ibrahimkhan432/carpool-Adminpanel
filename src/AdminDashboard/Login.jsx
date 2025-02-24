@@ -1,11 +1,14 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useContext } from 'react'
 import { AppRoutes } from '../constant/Constant';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import RoleBasedNav from '../components/RoleBasedNav';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext) 
   const handleSignin = async (e) => {
     e.preventDefault()
     try {
@@ -15,14 +18,10 @@ const Login = () => {
       }
       const res = await axios.post(AppRoutes.login, obj)
       const token = res.data.data.token
-      console.log(token);
-
-      navigate("/dashboard")
       Cookies.set("token", token, { expires: 7 })
-      console.log(res)
+      navigate("/dashboard")
     } catch (error) {
       alert(error.message)
-      console.log(error.message)
 
     }
     if (Cookies.get("token")) {
@@ -31,8 +30,11 @@ const Login = () => {
       navigate("/login")
     }
   }
+    <RoleBasedNav/>
+
   return (
     <div className="min-h-screen md:flex ">
+      {/* {currentUser && <RoleBasedNav/>} */}
       {/* Left div*/}
       <div className="w-1/2">
         <iframe
@@ -45,7 +47,7 @@ const Login = () => {
       {/* map */}
       <div className="w-1/2 bg-white flex flex-col justify-center items-center">
         <div className='w-80 mb-10'>
-          <img src="src\assets\dashboardLogo.jpg" alt="" srcset="" />
+          <img src="src/assets/dashboardLogo.jpg" alt=""  />
           <h1 className='text-center font-bold md:text-4xl mt-2 text-green-600'>Car Pooling</h1>
         </div>
         <div className="w-[60%] space-y-2">

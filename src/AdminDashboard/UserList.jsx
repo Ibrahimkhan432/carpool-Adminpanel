@@ -3,16 +3,29 @@ import Popup from "reactjs-popup";
 import { MdDeleteForever } from "react-icons/md";
 import { AuthContext } from "../context/AuthContext";
 import { CiEdit, CiMenuKebab } from "react-icons/ci";
+import axios from "axios";
+import { AppRoutes } from "../constant/Constant";
 
 const UserList = () => {
   const { AllUsers } = useContext(AuthContext);
   const [searchUser, setSearchUser] = useState("");
-  // const [deleteUser, setDeleteUser] = useState("");
-  console.log(searchUser);
+
+  // delete user
+  const deleteUser = async (userId) => {
+    try {
+      const res = await axios.delete(`${AppRoutes.deleteUser}/${userId}`)
+      console.log("res", res);
+      window.location.reload();
+
+    } catch (error) {
+      console.log("error", error.message);
+    }
+  };
+  // console.log(searchUser);
 
   return (
-    <div className=" min-h-screen overflow-y-scroll p-3 bg-white rounded-2xl border-2 border-green-600">
-      <div className="font-semibold text-2xl  flex flex-row text-slate-900 justify-between mt-2 mb-3">
+    <div className=" h-screen overflow-y-scroll p-2 bg-white rounded-2xl border-2 border-green-600">
+      <div className="font-semibold text-2xl  flex flex-row  rounded-md text-slate-900 justify-between mt-2 mb-3 ">
         <span>
           User List
         </span>
@@ -65,6 +78,7 @@ const UserList = () => {
               }
 
             }).map((data, index) => (
+
               <tr
                 key={index}
                 className="border-b dark:border-gray-700"
@@ -83,9 +97,37 @@ const UserList = () => {
                 <td className="px-6 py-4">
                   <ul className="flex space-x-2 text-xl">
                     {/* deletetBtn */}
-                    <li className="text-red-600 cursor-pointer"><MdDeleteForever 
-                    // onClick={() => setDeleteUser(data._id)}
-                    /></li>
+                    <li className="text-red-600 cursor-pointer">
+                      <Popup className="text-center"
+                        trigger={
+                          <MdDeleteForever />
+                        }
+                        modal
+                        overlayStyle={{ background: "rgba(0, 0, 0, 0.5)" }}
+                      >
+                        {(close) => (
+                          <div className="bg-white p-4 rounded-lg shadow-lg w-[400px] mx-auto text-center">
+                            {/* Header */}
+                            <div className="text-2xl font-semibold text-red-900 flex justify-end">
+                              <button onClick={close} className="text-red-500 text-xl cursor-pointer">
+                                ✖
+                              </button>
+                            </div>
+                            <div className="flex flex-col">
+                              <h1>Are you want to delete ?</h1>
+                              <div className="flex justify-center mt-8">
+                                <button
+                                  onClick={() => deleteUser(data._id)
+                                  }
+                                  className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-bold py-2 px-4 rounded-md">
+                                  Delete
+                                </button>
+                              </div>
+
+                            </div>
+                          </div>
+                        )}
+                      </Popup></li>
                     {/* EditBtn */}
                     <li className="text-black cursor-pointer">
                       <Popup className="text-center"
@@ -121,12 +163,13 @@ const UserList = () => {
                                 </div>
                               </div>
                               <div className="flex flex-row justify-between mt-4">
-                                <div className="flex flex-col w-1/2">
-                                  <label className="text-sm">Role</label>
-                                  <input
-                                    type="text"
-                                    className="border-2 border-gray-300 p-2 rounded-lg"
-                                  />
+                                <div className="flex flex-col w-1/2 ml-4">
+                                  <label className="text-sm">Gender</label>
+                                  <select className="border-2 border-gray-300 p-2 rounded-lg">
+                                    <option disabled>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                  </select>
                                 </div>
                                 <div className="flex flex-col w-1/2 ml-4">
                                   <label className="text-sm">Contact</label>
@@ -159,7 +202,7 @@ const UserList = () => {
                           <CiMenuKebab />
                         }
                         modal
-                        overlayStyle={{ background: "rgba(0, 0, 0, 0.5)" }} // Semi-transparent background
+                        overlayStyle={{ background: "rgba(0, 0, 0, 0.5)" }} 
                       >
                         {(close) => (
                           <div className="bg-white p-4 rounded-lg shadow-lg w-[600px] mx-auto text-center">
