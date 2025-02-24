@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import RoleBasedNav from '../components/RoleBasedNav';
 import { AuthContext } from '../context/AuthContext';
+import dashboardLogo from "../assets/dashboardLogo.jpg"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Login = () => {
       {/* map */}
       <div className="w-1/2 bg-white flex flex-col justify-center items-center">
         <div className='w-80 mb-10'>
-          <img src="src/assets/dashboardLogo.jpg" alt=""  />
+          <img src={dashboardLogo} alt=""  />
           <h1 className='text-center font-bold md:text-4xl mt-2 text-green-600'>Car Pooling</h1>
         </div>
         <div className="w-[60%] space-y-2">
