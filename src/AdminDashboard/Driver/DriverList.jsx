@@ -22,21 +22,12 @@ const deleteDriver = async (userId) => {
   } catch (error) {
     console.log("error", error.message);
   }
-
 };
 
   return (
     <div className="h-screen overflow-y-scroll  p-3  bg-white border-2 border-green-600 rounded-2xl justify-between">
-
       <div className=" text-2xl  flex flex-row text-slate-900 justify-between">
-        <div className="font-semibold">Driver List</div>
-        <div className="mb-4 space-x-4">
-          <button
-            onClick={() => navigate('/maledrivers')}
-            className="cursor-pointer  p-1  text-white rounded-md  bg-green-400 w-25">Male</button>
-          <button
-            onClick={() => navigate('/femaledrivers')}
-            className="cursor-pointer p-1 text-white rounded-md bg-green-400 w-25">Female</button>
+        <div className="font-semibold">Driver List
         </div>
         <span className="flex mb-5">
           <input
@@ -48,7 +39,7 @@ const deleteDriver = async (userId) => {
         </span>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-2 border-green-600">
           <thead className="text-xs text-white uppercase bg-green-600 dark:bg-gray-700">
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -91,7 +82,7 @@ const deleteDriver = async (userId) => {
               .map((driverData, index) => (
                 <tr
                   key={index}
-                  className="odd:bg-white even:bg-gray-50 border-b dark:border-gray-700"
+                  className="odd:bg-white even:bg-gray-50 border-b dark:border-gray-700 hover:bg-green-100"
                 >
                   <td className="px-6 py-4">{index + 1}</td>
 

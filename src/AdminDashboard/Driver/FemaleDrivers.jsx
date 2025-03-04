@@ -9,23 +9,19 @@ const FemaleDrivers = () => {
         <div className=" h-screen p-3 rounded-2xl bg-white border-2 border-green-600">
            <div className="font-semibold text-2xl  flex flex-row text-slate-900 justify-between">
         <div>Female Drivers</div>
-        <div className="mb-4 text space-x-4">
-          <button
-            onClick={() => navigate('/maledrivers')}
-            className="cursor-pointer  p-1 text-white rounded-md  bg-green-400 w-25">Male</button>
-          <button
-            className="cursor-pointer p-1 text-white rounded-md bg-green-400 w-25">Female</button>
-        </div>
         <div className="text-sm mr-10 items-center justify-center">
           Total Drivers : {AllFemaleDrivers.length}
         </div>
       </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-2 border-green-600">
                     <thead className="text-xs text-white uppercase bg-green-500  dark:bg-gray-700">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 S no.
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Profile img
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 User
@@ -51,9 +47,12 @@ const FemaleDrivers = () => {
                         {AllFemaleDrivers.map((fdriver, index) => (
                             <tr
                                 key={index}
-                                className="odd:bg-white even:bg-gray-50 border-b dark:border-gray-700"
+                                className="odd:bg-white even:bg-gray-50 border-b dark:border-gray-700 hover:bg-green-100"
                             >
                                 <td className="px-6 py-4">{index + 1}.</td>
+                                <td className="px-6 py-4">
+                  <img className="rounded-full w-13" src={fdriver.profileImage} alt="Profile" />
+                </td>
                                 <th
                                     scope="row"
                                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"

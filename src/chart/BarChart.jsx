@@ -1,59 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Chart } from "react-google-charts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
-function getRandomNumber() {
-  return Math.floor(Math.random() * 100) + 1;
-}
+const data = [
+  { name: "Jan", Completed: 120, Canceled: 10 },
+  { name: "Feb", Completed: 98, Canceled: 20 },
+  { name: "Mar", Completed: 130, Canceled: 5 },
+  { name: "Apr", Completed: 150, Canceled: 15 },
+  { name: "May", Completed: 160, Canceled: 12 },
+];
 
-function getData() {
-  return [
-    ["Age", "Weight"],
-    ...Array.from({ length: 16 }, () => [getRandomNumber(), getRandomNumber()]),
-  ];
-}
-
-export const options = {
-  title: "",
-  legend: { position: "bottom" },
-  animation: {
-    duration: 4000,
-    easing: "out",
-  },
-  vAxis: {
-    viewWindow: {
-      max: 100,
-      min: 0,
-    },
-  },
-  hAxis: {
-    viewWindow: {
-      max: 100,
-      min: 0,
-    },
-  },
+const RideAnalyticsChart = () => {
+  return (
+    <div className=" p-4">
+      <h2 className="text-md  font-semibold text-gray-700">Ride Analytics</h2>
+      <ResponsiveContainer width="100%" height={320}>
+        <BarChart data={data}>
+          <XAxis dataKey="name" stroke="#8884d8" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="Completed" fill="#4CAF50" radius={[5, 5, 0, 0]} />
+          <Bar dataKey="Canceled" fill="#F44336" radius={[5, 5, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
 };
 
-export default function BarChart() {
-  const [chartData, setChartData] = useState(getData);
-  const [day, setDay] = useState(new Date().getDay());
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setChartData(getData());
-      setDay((d) => d + 1);
-    }, 2000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [setChartData]);
-  return (
-    <>
-      <Chart
-        chartType="ScatterChart"
-        width="100%"
-        height="100%"
-        data={chartData}
-        options={options}
-      />
-    </>
-  );
-}
+export default RideAnalyticsChart;

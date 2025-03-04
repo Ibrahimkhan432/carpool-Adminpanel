@@ -9,7 +9,6 @@ import MaleDrivers from './AdminDashboard/Driver/MaleDrivers.jsx';
 import SideBar from './AdminDashboard/SideBar.jsx';
 import FemaleDrivers from './AdminDashboard/Driver/FemaleDrivers.jsx';
 import { AuthContext } from './context/AuthContext.jsx';
-import Login from './AdminDashboard/Login.jsx';
 
 const Router = () => {
   const {currentUser}=useContext(AuthContext)
@@ -20,7 +19,7 @@ const Router = () => {
         <Route element={<SideBar/>}>
         <Route path="/dashboard" element={<Dashboard/>  }/>
         <Route path="/userlist" element={<UserList />} />
-        <Route path="/driver" element={<ActiveDriver />} />
+        <Route path="/activedriver" element={<ActiveDriver />} />
         <Route path="/driverlist" element={<DriverList />} />
         <Route path="/maledrivers" element={<MaleDrivers  />} />
         <Route path="/femaledrivers" element={<FemaleDrivers/>} />

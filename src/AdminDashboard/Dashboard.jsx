@@ -4,6 +4,7 @@ import MapChart from "../chart/MapChart";
 import PieChart from "../chart/PieChart";
 import { AuthContext } from "../context/AuthContext";
 import { People } from "@mui/icons-material";
+import { FaUsers } from "react-icons/fa";
 const Dashboard = () => {
 
   const { AllUsers } = useContext(AuthContext);
@@ -11,13 +12,13 @@ const Dashboard = () => {
   
   return (
     <div className="h-screen">
-      <div className="flex flex-row   rounded-2xl">
+      <div className="flex flex-row rounded-2xl">
         <div className=" w-full rounded-2xl  ">
           <div className="h-50 w-full flex md:flex-row flex-col gap-6">
             <div className="bg-white w-1/2 h-50 rounded-2xl border-2 border-green-200 ">
               <div className="flex flex-row justify-between mt-4 mx-4">
                 <h1 className="font-semibold ">Total Users</h1>
-                <People className="text-blue-600" />
+                <FaUsers className="text-blue-600 w-10" />
                 <div>
                 </div>
               </div>
@@ -46,10 +47,10 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="w-full flex flex-col  md:flex-row  gap-6">
-            <div className="bg-white w-1/2 h-95 mt-4 rounded-4xl">
+            <div className="bg-white w-1/2 h-95 mt-4 rounded-2xl">
               <BarChart/>
             </div>
-            <div className="bg-white w-1/2 h-95 mt-4 rounded-xl  border-green-200">
+            <div className="bg-white w-1/2 h-95 mt-4 rounded-2xl  border-green-200">
               <MapChart />
             </div>
           </div>

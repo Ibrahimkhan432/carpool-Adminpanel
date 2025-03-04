@@ -12,4 +12,6 @@ export const AppRoutes = {
   getAllUser: BASE_URL + "/user/allUsers",
   getCurrentUser: BASE_URL + "/user/currentUser",
   deleteUser: BASE_URL + "/user",
+  searchUserByCnic: BASE_URL + "/user/searchByCnic",
+  editUser: BASE_URL + "/user",
 };
