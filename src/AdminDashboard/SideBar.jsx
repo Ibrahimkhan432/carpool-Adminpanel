@@ -13,7 +13,7 @@ function SideBar() {
   return (
     <>
       <Navbar />
-      <div className="m-5 mt-0 h-150 flex flex-col md:flex-row  gap-2">
+      <div className="container m-5 mt-0 h-150 flex flex-col md:flex-row  gap-2">
         <div className="bg-white w-full md:w-1/6 border-2 border-green-600 rounded-md bg-gradient-to-b from-green-400 to-green-200 ">
           <ul className='text-center space-y-5  p-4 font-semibold'>
             <li className='flex justify-center items-center gap-2'>
